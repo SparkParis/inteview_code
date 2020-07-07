@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <button id="node">点击</button>
+  </div>
+  <script>
+    var div = document.querySelector('div')
+    var node = document.getElementById('node');
+    div.addEventListener('click', (event) => {
+      alert(event.target)
+      event.stopPropagation()
+
+    }, true)//第三个参数默认为false,注册的冒泡事件
+    node.addEventListener('click', (event) => {
+      alert('事件冒泡')
+      // event.stopImmediatePropagation()//阻止之后的事件冒泡,还会阻止其他的注册事件,还能阻止该事件目标执行别的注册事件
+      event.stopPropagation()//阻止事件的冒泡,也会阻止事件的捕获
+    }, false)
+    node.addEventListener('click', (event) => {
+      alert('事件捕获')
+    }, true)
+  </script>
+</body>
+
+</html>
