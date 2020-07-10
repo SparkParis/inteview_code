@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flex布局</title>
+  <style>
+    .box1 {
+      background-color: #ff0;
+      height: 300px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      /* 上面的等价于flex-flow */
+      justify-content: space-around;
+      /* 设置处置居中 */
+      align-items: center;
+      /* 定义多行元素居中显示 */
+      align-content: center;
+    }
+
+    .item {
+      width: 100px;
+      height: 100px;
+      background-color: skyblue;
+      margin: 3px 5px;
+      /* flex: 1;====flex-grow flex-shrink flex-basis */
+      /* 每一行显示执行数值 */
+      flex: 1;
+
+    }
+
+    .item:nth-of-type(2) {
+      background-color: pink;
+      flex: 2;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- flex容器布局属性 -->
+  <div class="box1">
+    <div class="item">hello</div>
+    <div class="item">hello</div>
+    <div class="item">hello</div>
+    <div class="item">hello</div>
+    <div class="item">hello</div>
+    <div class="item">hello</div>
+    <div class="item">hello</div>
+    <div class="item">hello</div>
+    <div class="item">hello</div>
+    <div class="item">hello</div>
+    <div class="item">hello</div>
+    <div class="item">hello</div>
+
+  </div>
+
+</body>
+
+</html>

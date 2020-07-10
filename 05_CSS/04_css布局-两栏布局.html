@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>两栏布局</title>
+  <style>
+    .left1 {
+      width: 40%;
+      height: 100px;
+      background-color: #0ff;
+      float: left;
+      margin-left: 10%;
+    }
+
+    .right1 {
+      width: 40%;
+      height: 100px;
+      background-color: #0f5;
+      float: right;
+      margin-right: 10%;
+    }
+
+    .box2 {
+      background-color: #ff0;
+      /* 触发bfc */
+      overflow: hidden;
+    }
+
+    /* 方式2 */
+    .left2 {
+      width: 50%;
+      height: 200px;
+      background-color: #ff0;
+      /* 浮动 */
+      float: left;
+    }
+
+    .right2 {
+      height: 300px;
+      background-color: #00f;
+      /* 触发bfc */
+      overflow: hidden;
+    }
+
+    /* 方式3:flex */
+    .box3 {
+      display: flex;
+    }
+
+    .left3 {
+      width: 400px;
+      height: 200px;
+      background-color: #ff0;
+      flex: 1;
+    }
+
+    .right3 {
+      width: 400px;
+      height: 200px;
+      background-color: #f00;
+
+      flex: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 普通的两栏布局float+普通的margin -->
+  <!-- <div class="box1">
+    <div class="left1"></div>
+    <div class="right1"></div>
+  </div> -->
+  <!-- 自适应两栏布局:触发bfc,float+overflow:hidden -->
+  <!-- <div class="box2">
+    <div class="left2"></div>
+    <div class="right2"></div>
+  </div> -->
+  <!-- flex布局 -->
+  <div class="box3">
+    <div class="left3"></div>
+    <div class="right3"></div>
+  </div>
+
+</body>
+
+</html>

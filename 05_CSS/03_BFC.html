@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bfc</title>
+  <style>
+    .outer {
+      width: 600px;
+      background-color: skyblue;
+      /* 触发bfc */
+      overflow: hidden;
+    }
+
+    .float {
+      width: 50%;
+      float: left;
+      background-color: #ff0000;
+    }
+
+    .right {
+      background-color: #ff0;
+      /* 触发bfc */
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div>bfc上面的内容</div>
+  <div class="outer">
+    <div class="float">
+      浮动元素
+    </div>
+    <div class="right">
+      自适应元素
+    </div>
+  </div>
+  <div>bfc上面的内容</div>
+
+</body>
+
+</html>
+
+<!-- 
+bfc触发情况:
+- body元素
+- float不为none
+- display:inline-block,table-cells,flex
+- postion(absolute/fixed)
+- overflow(不为visible)
+bfc特性:
+- margin塌陷(放在不同的bfc)
+- 可以包含float元素(用于清除浮动)
+- 可以阻止元素被浮动元素覆盖(可以设置多栏布局)
+ -->

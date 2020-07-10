@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .content {
+    background-color: #ff0;
+    width: 200px;
+    height: 200px;
+  }
+
+  .fbox {
+    width: 200px;
+    height: 200px;
+    background-color: pink;
+    float: left;
+    /* opacity: .5; */
+  }
+
+
+  .fbox:after {
+    content: '';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+  }
+
+  .box {
+    width: 400px;
+    height: 400px;
+    background-color: skyblue;
+    /* clear: both;方式1:给浮动元素的下一个元素设置属性clear */
+  }
+</style>
+
+<body>
+  <div class="content">content</div>
+  <div class="fbox">
+    浮动元素
+  </div>
+  <div class="box">
+    清除浮动元素
+  </div>
+  <div class="parent">
+    <div class="float"></div>
+  </div>
+
+</body>
+
+</html>
