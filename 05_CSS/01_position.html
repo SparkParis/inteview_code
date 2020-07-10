@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>position定位测试</title>
+  <style>
+    .box{
+      width: 500px;
+      height: 500px;
+      background-color: #ffff00;
+      position: fixed;
+      overflow: scroll;
+      right: 0;
+      top: 0;
+    }
+    .box1{
+      width: 100px;
+      height: 700px;
+      background-color: #ff00ff;
+      position: absolute;
+      left: 100px;
+      top: 100px;
+    }
+    .parent{
+      width: 300px;
+      height: 300px;
+      background-color: pink;
+    }
+    .box2{
+      width: 100px;
+      height: 100px;
+      background-color: #fff;
+      position:relative;
+      left:100px;
+      top: 100px;
+      margin: 20px;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    fixed定位
+    <div class="box1">absolute</div>
+  </div>
+  <div class="parent">
+    <div class="box2">relative</div>
+  </div>
+  <!-- 在绝对定位的过程中,相对定位的元素是在组先级别中position不是static的元素进行定位 -->
+  <!-- 相对定位后:是半文档流状态,此时依然占据着文档流中的位置,可以设置margin和padding,
+    同时也具备了脱离文档流的状态,可以设置left等属性 -->
+</body>
+</html>

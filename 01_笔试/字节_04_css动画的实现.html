@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css动画实现</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: #000;
+      position:absolute;
+      animation:  slidgpu 3s linear 0s infinite alternate;
+      transform: translate3d(0, 0, 0);
+
+    } 
+    /* 方式1:left:会引起重绘和回流 */
+    @keyframes slide {
+      0%{ left:0px;}
+      25%{ left:25%;}
+      50%{ left:50%;}
+      75%{ left:75%;}
+      100%{ left:100%;}
+      
+    }
+    /* 方式2:tranform:开启GPU加速,优化性能,解决动画过程中卡顿现象 */
+    @keyframes slidgpu {
+      0% {transform: translate3d(0, 0, 0);}
+      25% {transform: translate3d(200px, 0, 0);}
+      50% {transform: translate3d(400px, 0, 0);}
+      75% {transform: translate3d(800px, 0, 0);}
+      100% {transform: translate3d(100px, 0, 0);}
+    }
+
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  
+</body>
+</html>
