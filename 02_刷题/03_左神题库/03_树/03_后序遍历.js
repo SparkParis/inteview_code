@@ -46,7 +46,7 @@ function postOrder2(root) {
   stack.push(h);
   var res = []
   while (stack.length) {
-    //取出栈顶元素
+    //获取栈顶元素的值,没有出栈
     cur = stack[stack.length - 1]
     //表示还未开始打印直接进站
     if (cur.left && cur.left != h && cur.right != h) {
@@ -54,9 +54,10 @@ function postOrder2(root) {
     } else if (cur.right && cur.right != h) {
       stack.push(cur.right);
     } else {
-      res.push(cur.val);
+      res.push(stack.pop().val);
       //此时将h指向遍历过的节点
       h = cur;
     }
   }
+  return res
 }

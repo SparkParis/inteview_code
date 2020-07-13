@@ -23,9 +23,11 @@ function preOrder2(root) {
     while (stack.length) {
       var cur = stack.pop();
       res.push(cur.val);
+      //右子树先栈(后出栈)
       if (cur.right) {
         stack.push(cur.right);
       }
+      //左子树入栈
       if (cur.left) {
         stack.push(cur.left)
       }
