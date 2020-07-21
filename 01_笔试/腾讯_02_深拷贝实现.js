@@ -8,7 +8,7 @@ function deepCopy(obj) {
     target = Array.isArray(obj) ? [] : {};
     //递归遍历
     for (var i in obj) {
-      target[i] = (typeof target[i] == 'object') ? deepCopy(obj[i]) : obj[i]
+      target[i] = (typeof obj[i] == 'object') ? deepCopy(obj[i]) : obj[i]
     }
   } else {
     target = obj

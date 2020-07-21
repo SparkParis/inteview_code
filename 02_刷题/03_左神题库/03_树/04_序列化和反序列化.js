@@ -1,7 +1,7 @@
 // 序列化实现
 function serialze(root, arr = []) {
   if (!root) {
-    return '#'
+    arr.push("#")
   } else {
     arr.push(root.val);
     serialze(root.left, arr);
@@ -18,7 +18,7 @@ function deserialize(arr) {
   var node = null;
   var cur = arr.shift();
   if (cur !== '#') {
-    node = new Node(cur);
+    node = new Node(cur.val);
     node.left = deserialize(arr);
     node.right = deserialize(arr);
   }

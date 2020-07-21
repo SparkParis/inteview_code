@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>dom操作</title>
+</head>
+
+<body>
+  <form action="" method="get">form元素</form>
+  <form action="" method="get">form元素</form>
+  <a href="http://ww.baidu.com" name="a1">超链接</a>
+  <a href="http://ww.baidu.com" name="a2">超链接</a>
+  <a href="http://ww.baidu.com">超链接</a>
+  <img src="" alt="图片">
+  <img src="" alt="图片">
+  <area shape="" coords="" href="" alt="">
+  <div id="box">
+    <div class="c4"></div>
+    <p></p>
+    <div class="c1" name='c1' id="c">
+      <div name='pre'>前一个节点</div>
+      <div class="c3"></div>
+      <div name="next">后一个节点</div>
+    </div>
+    <div class="c2 active de" style="width: 100px;height: 200px;background-color: aquamarine;" id="c2id">我是c2中的内容<p>
+        我是c2中的p中的内容</p>
+    </div>
+  </div>
+  <ul>
+    <li class="item">list</li>
+    <li class="item">list</li>
+    <li class="item">list</li>
+  </ul>
+  <div class="attr">操作属性的节点</div>
+  <script>
+    // 1.document操作常见的属性
+    console.log(document.body, '返回body元素')
+    console.log(document.cookie, '返回当前文档相关的所有的cookie');
+    console.log(document.domain, '返回当前文档的域名');
+    console.log(document.title, '返回当前文档的文档标题');
+    console.log(document.lastModified, '返回文档的最后修改时间');
+    console.log(document.referrer, '返回载入当前文档的文档的url');
+    console.log(document.URL, '返回当前文档的url');
+    console.log(document.documentElement, '返回根元素的节点<html>');
+
+    // 2.返回元素集合(注意返回的是伪数组)
+    console.log(document.all, '返回html元素中的所有节点对象');
+    console.log(document.forms, '返回所有form元素的集合');
+    console.log(document.anchors, '返回所有的锚点元素的集合并且具有name属性');
+    console.log(document.links, '返回所有的具有href属性的元素的集合,a,area');
+    console.log(document.images, '返回所有img元素');
+
+    // 3.获取所有的dom元素,注意这里获取到都是dom数组,获取单个元素都需要遍历
+    var box = document.getElementById('box')
+    console.log(box, '根据id获取dom对象');
+    var c1 = document.getElementsByClassName('c1')
+    console.log(c1, '根据类名获取dom对象')
+    var names = document.getElementsByName('a1');
+    console.log(names, '根据name属性获取元素集合');
+    var tags = document.getElementsByTagName('div');
+    console.log(tags, '根据tag名称获取元素集合');
+
+    // 4.css获取元素的对象
+    var css1 = document.querySelector('#box');
+    console.log(css1, '根据选择器选择符合条件的第一个dom对象');
+    var cssall = document.querySelectorAll('.item');
+    console.log(cssall, '根据选择器获取符合的集合')
+
+    // 5.dom获取层次节点
+    console.log(box.childElementCount, '返回孩子的节点数');
+    console.log(box.childNodes, '返回孩子节点的节点集合,包含元素节点和文本节点')
+    console.log(box.children, '返回孩子元素节点')
+    console.log(box.firstChild, '返回第一个子节点(包含文本节点)')
+    console.log(box.lastChild, '返回最后一个子节点(包含文本节点)')
+    var c3 = document.querySelector('.c3');
+    console.log(c3.parentNode, '当前节点的父节点');
+    console.log(c3.previousSibling, '返回当前节点的同一级的上一个节点(包含文本)');
+    console.log(c3.nextSibling, '返回当前节点的同一级的后一个节点(包含文本)');
+    console.log(c3.attributes, '返回当前节点的所有属性节点的集合');
+    console.log(c3.ownerDocument, '返回当前节点的文档根节点,document');
+    // for (var i = 0; i < c1.length; i++) {
+    //   console.log(c1[i]);
+    // }
+    console.log(tags.item(3), '返回nodelist中位于指定下标的节点')
+    var c2 = document.querySelector('.c2');
+    console.log(c2.style, '返回当前节点的内联样式')
+    console.log(c2.style.width, '返回当前节点的内联样式的属相值或者进行修改')
+    console.log(c2.id, '返回当前节点的id值');
+    console.log(c2.className, '返回当前节点的类名');
+    console.log(c2.innerHTML, '返回当前元素节点的所有html代码')
+    console.log(c2.innerText, '返回当前节点的所有文本内容');
+    console.log(c2.outerHTML, '返回包括当前节点在内所有的html内容');
+
+    // 6.实现dom节点的增删查找
+    var body = document.body;
+    var frag = document.createDocumentFragment();//创建一个dom片段
+    var div = document.createElement('div');//创建一个dom元素
+    div.style.width = '100px';
+    div.style.height = '100px';
+    div.style.backgroundColor = '#f00';
+    frag.appendChild(div);//将dom元素添加到dom片段
+    frag.appendChild(document.createTextNode('我是新创建的文本节点'));//将创建的文本节点添加到dom片段
+    //将dom片段添加到body元素中
+    //在执行节点前面添加节点
+    var textNode = document.createTextNode('我是div的子节点')
+    div.appendChild(textNode)
+    div.insertBefore(document.createTextNode('我是div子节点前面的节点'), textNode)
+    body.appendChild(frag);
+    // div.removeChild(textNode);//移除div中的子节点
+    // div.removeAttribute()//删除属性节点的
+    div.replaceChild(document.createTextNode('我是替换的文本节点'), textNode)//替换子节点
+    // 克隆节点cloneNode(true/false),true表示递归赋值,false只复制当前节点
+    var clone = div.cloneNode()
+    console.log(clone);
+    var clone2 = div.cloneNode(true)
+    console.log(clone2)
+
+    // 7.dom的操作属性节点
+    var attr = document.querySelector('.attr');
+    attr.setAttribute('name', 'myAttr');
+    console.log(attr);
+    console.log(attr.getAttribute('name'));
+    // console.log(attr.removeAttribute('name'));
+    console.log(attr.attributes);//返回所有的属性名
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+</body>
+
+</html>
