@@ -8,7 +8,7 @@ function facci(n) {
   }
   return facci(n - 1) + facci(n - 2);
 }
-// 2.时间复杂度O(N)的方法,通过一次计算每一项的值,知道求出第n项的值
+// 2.时间复杂度O(N)的方法,通过依次计算每一项的值,知道求出第n项的值
 function facci2(n) {
   if (n < 1) return 0;
   if (n == 1 || n == 2) {
@@ -34,19 +34,21 @@ function f3(n) {
   }
   var base = [[1, 1], [1, 0]]
   var res = matrixPower(base, n - 2);
-  // res = multiMatrix([1, 1], res)
-  return res[0][0] + res[0][1]
+  // (f1,f2)=[1,1],第一列加和就是fn的结果
+  return res[0][0] + res[1][0]
 
 }
 // 矩阵乘法,求矩阵m的p次方
 function matrixPower(m, p) {
-  //先声明行的长度
+  //先声明行的长度,注意这里初始化的是一个单位矩阵
   var res = new Array(m.length);
-  // 通过遍历在声明列
-  for (var i = 0; i < res.length; i++) {
+  for (var i = 0; i < m.length; i++) {
     res[i] = new Array(m[0].length);
     for (var j = 0; j < m[0].length; j++) {
-      res[i][j] = 1
+      if (i != j)
+        res[i][j] = 0;
+      else
+        res[i][j] = 1
     }
   }
   var tmp = m;
@@ -60,14 +62,15 @@ function matrixPower(m, p) {
 }
 // 连个矩阵相乘
 function multiMatrix(m1, m2) {
+  // 注意这里初始化只能通过new的方式进行初始化,fill方法会同步进行修改,这里需要注意m1内部不是数组的情况
   var res = new Array(m1.length);
-  for (var i = 0; i < m1.length; i++) {
+  for (var i = 0; i < res.length; i++) {
     res[i] = new Array(m2[0].length);
     for (var j = 0; j < m2[0].length; j++) {
       res[i][j] = 0;
     }
   }
-  for (var i = 0; i < m1.length; i++) {
+  for (var i = 0; i < res.length; i++) {
     for (var j = 0; j < m2[0].length; j++) {
       for (var k = 0; k < m2.length; k++) {
         res[i][j] += m1[i][k] * m2[k][j]
@@ -78,6 +81,7 @@ function multiMatrix(m1, m2) {
 }
 
 
-console.log(f3(4));
-console.log(facci(4));
-console.log(facci2(4));
+console.log(f3(8));
+console.log(facci(8));
+// console.log(facci2(8));
+// console.log(Array(3).fill(Array(4).fill(0)));该方法修改一个另外一个变量也会受到影响,建议使用new的方式进行创建
