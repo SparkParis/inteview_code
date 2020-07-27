@@ -15,9 +15,10 @@ function jsonToHump(json) {
   for (var item of Object.entries(json)) {//注意这里使用的是for of
     if (!Array.isArray(item)) {
       map[item] = jsonToHump(item)
+    } else {
+      var key = toHump(item[0]);
+      map[key] = item[1];
     }
-    var key = toHump(item[0]);
-    map[key] = item[1];
   }
   return map;
 }

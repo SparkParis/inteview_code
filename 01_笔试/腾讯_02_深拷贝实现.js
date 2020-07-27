@@ -14,5 +14,4 @@ function deepCopy(obj) {
     target = obj
   }
   return target
-
 }

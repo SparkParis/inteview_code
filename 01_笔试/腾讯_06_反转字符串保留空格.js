@@ -13,6 +13,5 @@ var str1 = ''
 str1 = ' b c '
 str1 = ' b'
 str1 = '   '
-
 console.log(str1.length);
 console.log(reverse(str1).length);

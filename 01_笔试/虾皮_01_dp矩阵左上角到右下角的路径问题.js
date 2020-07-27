@@ -1,3 +1,4 @@
+// 动态规划问题,需要建立一张dp table
 function uniquePath(obstacleGrid) {
   if (!obstacleGrid) return 0
   var m = obstacleGrid.length;

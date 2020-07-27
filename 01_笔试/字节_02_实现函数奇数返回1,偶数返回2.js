@@ -11,27 +11,24 @@ function time() {
   var i = 0;
   var num = -1
 
-  function intime() {
+  return function intime() {
     i++
     num = i % 2 ? 1 : 2;
-    return num
+    console.log(num);
   }
 
 }
-console.log(time().valueOf());
-
 //调用赋值给一个变量 否则不起作用
-// var result = time();
-
-// console.log(result());
-// ;
-// console.log(result());
-// console.log(result());
-// console.log(result());
-// console.log(result());
-// function sum(a) {
-//   return function (b) {
-//     return function (c) { return a + b + c };
-//   }
-// }
-// console.log(sum(1)(2)(3).valueOf(), 111)
+function run(times) {
+  var result = time();
+  for (var i = 0; i < times; i++) {
+    result()
+  }
+}
+run(10)
+function sum(a) {
+  return function (b) {
+    return function (c) { return a + b + c };
+  }
+}
+console.log(sum(1)(2)(3).valueOf(), 111)

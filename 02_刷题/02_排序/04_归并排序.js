@@ -1,4 +1,3 @@
-
 // 2.归并排序
 function mergeSort(arr) {
   if (arr == null || arr.length < 2) {
