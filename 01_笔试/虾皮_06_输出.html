@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1.输出题目1(let的暂时性死区的问题)
+    var a = 10;
+    function a() { };
+    console.log(a);
+    function b(num) {
+      console.log(num);
+      let num = 20;//let存在就会存在暂时性死去,所在在函数b中就是一个暂时性死区,会报错
+    }
+    b(20)
+    //输出结果是10,第二个输出会报错(暂时性死区)
+
+    // 2.输出,以下代码执行界面会不会卡死(不会)
+    console.log('----------------2----------');
+    function a() {
+      setTimeout(a, 0);
+    }
+    function b() {
+      return Promise.resolve().then(b)
+    }
+
+    // 3.打印结果的输出
+
+    console.log('----------------3----------');
+    var a = 0;
+    function Fun() {
+      this.a = 10;
+      // console.log(this, 11);
+      this.b = () => {
+        console.log(this.a);
+      }
+    }
+    Fun.prototype = {
+      b: function () {
+        this.a = 20;
+        console.log(this.a);
+      },
+      c() {
+        console.log(this);
+        console.log(this.a);
+      }
+    }
+    const fun = new Fun();
+    fun.c.call(null);//指向window,------>0,通过实例对象调用c方法,通过查找原型链的方式找到Fun中的c(),this.a也就是window中的属性a,返回结果0
+    fun.b.call(null);//null和不填是一样,指向的window-------->10,fun.b指向的实例对象中的this.b的方法,this.b方法是一个箭头函数,没有this,this是包裹箭头函数的this,这里this也就是声创建的对象fun,所以输出为10
+
+    // 4.输出(localStorage的存储)
+    console.log('----------------3----------');
+    /*
+     
+    localStorage中存储的键值对都是以字符串的形式存在的,会将value的类型自动转化为字符串类型,
+    对象会转化为数组的形式[object Object]
+    */
+
+    const obj = { a: 1 }
+    localStorage.setItem('test', obj)
+    const test = localStorage.getItem('test')
+    console.log(test);//[object Object]
+    console.log(test.a);//undefined
+    console.log(test.a == 1)//false
+    console.log(localStorage);//test: "[object Object]"
+
+    // 测试代码
+    localStorage.setItem('myCat', 'Tom');
+    let cat = localStorage.getItem('myCat');
+    console.log(cat);//Tom
+
+    // 对象转化为字符串
+    var obj1 = { a: 1 }
+    var arr = [1, 2, 3]
+    var arr1 = [{ a: 1 }, { b: 2 }, 3]
+    console.log(obj1.toString());//[object Object]
+    console.log(arr.toString());//1,2,3
+    console.log(arr1.toString());//[object Object],[object Object],3
+
+
+    // 6.输出
+    function fun(n, o) {
+      console.log(o);
+      return {
+        fun: function (m) {
+          return fun(m, n)
+        }
+      }
+    }
+    const a = fun(0);
+    a.fun(1);
+    a.fun(2);
+    a.fun(3);
+    const b = fun(0).fun(1).fun(2).fun(3)
+    const c = fun(0).fun(1);
+    c.fun(2);
+    c.fun(3)
+    /*undefined,0,0,0,undefined,0,1,2,undefined,0,1,1*/
+
+    //  7.输出,yield考察,返回的是输出结果
+    const arr = [1, [2, [3], 4], 5, [6, 7]];
+    function* test(arr) {
+      for (let item of arr) {
+        if (Array.isArray(item)) {
+          yield* test(item)
+        } else {
+          yield item;//通过递归遍历的方式返回了所有的基本元素
+        }
+      }
+    }
+    for (let result of test(arr)) {
+      console.log(result);
+    }
+    //1 2 3 4 5 6 7
+  </script>
+</body>
+
+</html>

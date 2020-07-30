@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1.add函数功能1
+    /**
+    add(1); // 1
+    add(1)(2); // 3
+    add(1)(2)(3)； // 6
+    add(1)(2)(3)(4)； // 10
+    将函数作为返回值输出，然后接收新的参数并进行计算。
+    打印函数时会自动调用 toString()方法，
+    函数 add(a) 返回一个闭包 sum(b)，函数 sum() 中累加计算 a = a + b，
+    只需要重写sum.toString()方法返回变量 a 就可以了。
+    */
+    function add(a) {
+      function sum(b) { // 使用闭包
+        a = a + b; // 累加
+        return sum;
+      }
+      sum.toString = function () { // 重写toString()方法
+        return a;
+      }
+      return sum; // 返回一个函数
+    }
+    // 注意这里测试需要在浏览器中进行测试
+    add(1).toString(); // 1
+    add(1)(2); // 3
+    add(1)(2)(3); // 6
+    add(1)(2)(3)(4); // 10
+
+    // 多参数实现add函数
+
+    function add2(...args1) {
+      var res = args1.reduce((a, b) => a + b)
+      function sum(...args2) { // 使用闭包
+        res += args2.reduce((a, b) => a + b)
+        return sum;
+      }
+      sum.toString = function () { // 重写toString()方法
+      }
+      return sum; // 返回一个函数    return res;
+
+    }
+    add2(1)(100, 1)(1000)
+  </script>
+</body>
+
+</html>
