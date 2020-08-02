@@ -13,7 +13,6 @@ let onWatch = (obj, setBind, getLogger) => {
   }
   return new Proxy(obj, handler)
 }
-
 let obj = { a: 1 }
 let p = onWatch(
   obj,

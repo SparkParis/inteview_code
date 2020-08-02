@@ -11,3 +11,4 @@ function joseoh(n, m) {
   }
   return (joseoh(n - 1, m) + m) % n;
 }
+console.log(LastRemaining_Solution(10, 3));

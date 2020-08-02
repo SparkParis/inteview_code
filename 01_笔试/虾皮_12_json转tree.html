@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function convertTree(arr) {
+      var map = {}
+      arr.forEach(item => {
+        //解构
+        var { province, city, name } = item
+        //如果一级province不存在
+        if (!map[province]) {
+          map[province] = {}
+        }
+        //如果二级city不存在
+        if (!map[province][city]) {
+          map[province][city] = {}
+        }
+        map[province][city][name] = null
+      });
+      //遍历map开始递归
+      var res = []
+      for (let item in map) {
+        res.push(convertSub(item, map[item]))
+      }
+      return res
+    }
+
+    //用于递归
+    function convertSub(province, map) {
+      var children = []
+      for (let item in map) {
+        if (!map) {
+          break
+        }
+        children.push(convertSub(item, map[item]))
+      }
+      var map = children.length ? {
+        value: province,
+        children: children
+      } : { value: province }
+      return map
+    }
+    var arr = [{
+      "province": "浙江",
+      "city": "杭州",
+      "name": "西湖"
+    }, {
+      "province": "四川",
+      "city": "成都",
+      "name": "锦里"
+    }, {
+      "province": "四川",
+      "city": "成都",
+      "name": "方所"
+    }, {
+      "province": "四川",
+      "city": "阿坝",
+      "name": "九寨沟"
+    }]
+    console.dir(convertTree(arr));
+  </script>
+</body>
+
+</html>

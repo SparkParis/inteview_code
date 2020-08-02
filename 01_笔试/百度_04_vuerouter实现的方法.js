@@ -1,0 +1,3 @@
+hashChange
+history.pushState
+history.replaceState
