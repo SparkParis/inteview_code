@@ -75,4 +75,4 @@ heapSort(arr)
 console.log(arr);
 module.exports = {
   heapInsert
-}
+} 

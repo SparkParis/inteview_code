@@ -25,7 +25,6 @@ function ajustMaxHeap(arr, index, length) {
     }
   }
 }
-
 //小顶堆的创建
 function createMinHeap(arr, length) {
   for (var i = Math.floor(length / 2) - 1; i >= 0; i--) {
@@ -70,7 +69,6 @@ function addEleHeap(arr = [], element) {
   }
   return arr
 }
-
 //小顶堆(堆的移出只能从头部移出,用最后一位填充,在调整)
 function removeEleHeap(arr = []) {
   var result = null
