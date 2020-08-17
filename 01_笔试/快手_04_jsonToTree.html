@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const list = [{
+      id: 1,
+    }, {
+      id: 2,
+    }, {
+      id: 5,
+      parentId: 4,
+    }, {
+      id: 3,
+      parentId: 1,
+    }, {
+      id: 4,
+      parentId: 2,
+    }];
+
+    const treeList = [{
+      id: 1,
+      children: [{
+        id: 3,
+        parentId: 1,
+      }],
+    }, {
+      id: 2,
+      children: [{
+        id: 4,
+        parentId: 2,
+        children: [{
+          id: 5,
+          parentId: 4,
+        }],
+      }],
+    }];
+
+    function jsonToMap(list) {
+      var map = {};
+      list.forEach((item) => {
+        const { id, parentId } = item;
+        if (!map[id]) {
+          if (parentId) {
+            map[id] = { parentId: parentId, children: [] };
+          } else {
+            map[id] = { children: [] };
+          }
+        }
+        if (parentId && !map[id][parentId]) {
+          map[id].parentId = parentId;
+        }
+        if (!parentId) return;
+        if (!map[parentId]) {
+          map[parentId] = { children: [item] }
+        } else {
+          map[parentId].children.push(item)
+        }
+      })
+      return map;
+    }
+    function mapToTree(map) {
+      if (!map) return null;
+      var list = []
+      var m = new Map()
+      for (var item of Object.entries(map)) {
+        var temp = {};
+        temp.id = item[0];
+        if (item[1].parentId) {
+          temp.parentId = item[1].parentId;
+        }
+        if (item[1].children.length) {
+          temp.children = item[1].children
+        }
+        m.set(item[0], temp);
+      }
+      m.forEach((value, key) => {
+        if (value.parentId == undefined) {
+          return
+        }
+        if (m.get(key).children == undefined) {
+          m.get(key).children = [value]
+        } else {
+          m.get(key).children.push(value)
+        }
+        m.delete(key)
+      })
+      m.forEach((value) => {
+        list.push(value)
+      })
+      return list
+    }
+    const map = (list) => {
+      var map = jsonToMap(list);
+      var treeList = mapToTree(map)
+      return treeList;
+    }
+    console.log(map(list));
+  </script>
+</body>
+
+</html>
