@@ -68,4 +68,5 @@ function parseUrlReg(url) {
 
 var url = 'http://ppp.com:8090/mximprove/mxt/scripts/views/MainViewController.js'
 // parseUrl(url)
-parseUrlReg(url)
+const obj = parseUrlReg(url)
+console.log(obj);

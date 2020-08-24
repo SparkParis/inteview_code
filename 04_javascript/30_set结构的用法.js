@@ -10,6 +10,7 @@ console.log(Array.from(s));
 s.add(10).add(21).add(22)//添加属性
 console.log(s.has(5));//true  判断是否含有某属性
 console.log(s.size); //set的属性size获取长度
+console.log(s.delete(21));
 
 // set中的键名=值名
 

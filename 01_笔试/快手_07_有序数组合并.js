@@ -22,5 +22,4 @@ function merge(a1, a2) {
     res.push(a2[i++]);
   }
   return res
-
 }
