@@ -68,6 +68,7 @@ function getdp2(arr) {
     ends[l] = arr[i];
     //更新dp[i],和方式1中存放的一样,第i的位置的arr[i]为结尾的字符串的数量
     dp[i] = l + 1
+    console.log(ends, dp[i], 'ends')
   }
   console.log(dp, 'dp2');
   return dp

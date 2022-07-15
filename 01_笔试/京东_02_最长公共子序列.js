@@ -11,5 +11,5 @@ function getResult(n) {
   }
   return parseFloat(res).toFixed(4)
 }
-var n = readInt()
-print(getResult(n));
+// var n = readInt()
+// print(getResult(n));

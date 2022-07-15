@@ -34,6 +34,7 @@ function lsce(str1, str2) {
   var s1 = str1.match(/./g);
   var s2 = str2.match(/./g);
   var dp = getdp(s1, s2);
+  console.log(dp, 'dp')
   var m = s1.length - 1;
   var n = s2.length - 1;
   //右下角位置开始,(右下角存放的是最长公共子序列的长度)

@@ -64,7 +64,7 @@ function deepFreeze(obj) {
 }
 
 // Object.create()的手动实现,创建一个对象,让该对象的__proto__属相指向参数o,使用现有的对象来提供新创建的对象的__proto__
-Object.myCreate(o){
+Object.myCreate = function (o) {
   function F() { };
   F.prototype = o;
   return new F();

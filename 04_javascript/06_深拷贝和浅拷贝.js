@@ -21,7 +21,7 @@ p2.age = 19
 
 // 浅拷贝3. lodash.clone(value)
 var _ = require('lodash');
-const { clone } = require('lodash')
+const { clone, functionsIn } = require('lodash')
 var b = {
   name: 'zhangsan',
   age: '45',
@@ -94,3 +94,5 @@ function deepCopy(obj) {
   return target
 
 }
+
+// 1.递归拷贝

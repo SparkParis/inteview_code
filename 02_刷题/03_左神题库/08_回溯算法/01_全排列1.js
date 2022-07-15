@@ -62,4 +62,5 @@ var Permutat = function (str) {
 */
 
 var str = 'abc';
-console.log(Permutat(str));
+// console.log(Permutat(str));
+console.log(Permutation(str));

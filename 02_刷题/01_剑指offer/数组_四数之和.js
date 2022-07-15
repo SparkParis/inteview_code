@@ -27,7 +27,6 @@ function fourSum(nums, target) {
           result.push([nums[i], nums[j], nums[left], nums[right]])
           //left和right去重
 
-
         }
         //left和right去重,并移动指针
         if (sum <= target) {

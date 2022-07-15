@@ -1,9 +1,11 @@
 
 // 1.经典解法
 function minCost1(str1, str2, ic, dc, rc) {
-  if (!str1 | !str2) {
+  if (!str1 && !str2) {
     return 0
   }
+  if (!str1) return ic * str2.length;
+  if (!str2) return dc * str1.length;
   var s1 = str1.match(/./g);
   var s2 = str2.match(/./g);
   // 初始化dp表
@@ -13,6 +15,7 @@ function minCost1(str1, str2, ic, dc, rc) {
   for (var i = 0; i < row; i++) {
     dp[i] = new Array(col);
   }
+
   // 初始化0,0
   dp[0][0] = 0;
   // 初始化第一行和第一列
@@ -22,6 +25,7 @@ function minCost1(str1, str2, ic, dc, rc) {
   for (var j = 0; j < col; j++) {
     dp[0][j] = j * ic;
   }
+  console.log(dp, 'dp')
   // 其他节点依赖三个位置
   for (var i = 1; i < row; i++) {
     for (var j = 1; j < col; j++) {
@@ -36,5 +40,5 @@ function minCost1(str1, str2, ic, dc, rc) {
   }
   return dp[row - 1][col - 1]
 }
-var str1 = 'ab12cd3', str2 = 'abcdf'
-console.log(minCost1(str1, str2, 5, 3, 2));
+var str1 = '', str2 = 'a'
+console.log(minCost1(str1, str2, 1, 1, 1));
